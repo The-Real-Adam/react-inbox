@@ -1,6 +1,20 @@
 import React from 'react'
 
+const Toolbar = ({ messages, toggleSelectAll, markAsRead, markAsUnread, applyLabel, removeLabel, deleteMessages }) => {
+  const unreadCount = messages.filter(message => !message.read).length
+  const selectedCount = messages.filter(message => message.selected).length
+  let selectAllClass
 
+  switch(selectedCount) {
+    case 0:
+      selectAllClass = 'fa-square-o'
+      break;
+    case messages.length:
+      selectAllClass = 'fa-check-square-o'
+      break;
+    default:
+      selectAllClass = 'fa-minus-square-o'
+  }
 
   return (
      <div className="row toolbar">
@@ -52,5 +66,5 @@ import React from 'react'
        </div>
      </div>
    )
-
+}
 export default Toolbar
